@@ -69,7 +69,7 @@
 
 
 ## Properties
-	contents:
+* contents:
 	- Dependency Properties
 	- Property Metadata
 	- Read Only Properties
@@ -88,3 +88,45 @@
 	- provide metadata (optional)
 	- Create a CLR "wrapper" (optional)
 	- // demo in MyControl.cs
+### Property Metadata
+* What is Property Metadata?
+	- specify default values
+		```
+			public static readonly DependencyProperty TextProperty =
+				DependencyProperty.Register("Text", typeof(string), typeof(MyControlDP), 
+					new PropertyMetadata("Default Value Text");
+		```
+	- property change callbacks
+		```
+			public static readonly DependencyProperty TextProperty =
+				DependencyProperty.Register("Text", typeof(string), typeof(MyControlDP), 
+					new PropertyMetadata("Default Value Text",
+					OnPropertyChangeCallback,);
+			private static void OnPropertyChangeCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+			{
+
+			}
+		```
+	- coercion
+		- allows you to change the incoming value
+		- ***IMPORTANT this change only affects the control's value, but not the actual value in data source***
+		```
+			public static readonly DependencyProperty TextProperty =
+				DependencyProperty.Register("Text", typeof(string), typeof(MyControlDP), 
+					new PropertyMetadata("Default Value Text",
+					OnPropertyChangeCallback,
+					OnCoerceValueCallback);
+			private static object OnCoerceValueCallback(DependencyObject d, object baseValue)
+			{
+
+			}
+		```
+	- validation
+### FrameworkPropertyMetadata
+* Gives lot more control than PropertyMetadata
+	- Change default data binding mode
+	- Flags we can set:
+		- AffectsMeasure
+		- AffectsArrange
+		- AffectsRender
+	

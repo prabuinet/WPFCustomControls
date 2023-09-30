@@ -12,6 +12,9 @@ namespace WPFCustomControls
         [ObservableProperty]
         private string _name;
 
+        [ObservableProperty]
+        private string dpName;
+
         public MyDataObject()
         {
 

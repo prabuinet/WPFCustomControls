@@ -11,7 +11,7 @@
         <StackPanel MaxWidth="150">
             <cc1:MyButton Height="50" Content="Hello World" />
             <cc1:MyContentControl
-                Margin="0,10"
+                Margin="0,10,0,0"
                 Padding="0,20"
                 BorderBrush="Black"
                 BorderThickness="1">
@@ -19,7 +19,7 @@
             </cc1:MyContentControl>
 
             <cc1:MyItemsControl
-                Margin="0,10"
+                Margin="0,10,0,0"
                 Padding="0,20"
                 BorderBrush="Black"
                 BorderThickness="1">
@@ -32,11 +32,21 @@
                 </cc1:MyItemsControl.Items>
             </cc1:MyItemsControl>
 
-            <cc1:MyTextControl Text="{Binding Name, Mode=TwoWay}" />
+            <cc1:MyTextControl Margin="0,10,0,0" Text="{Binding Name, Mode=TwoWay}" />
 
-            <TextBlock Margin="0,10" Text="{Binding Name}"></TextBlock>
+            <Border Margin="0,10,0,0" BorderBrush="CadetBlue" BorderThickness="1">
+                <TextBlock Margin="0,0,0,0" Text="{Binding Name}"></TextBlock>
+            </Border>
 
-            <cc1:MyControl />
+            <Border Margin="0,10,0,0" BorderBrush="CadetBlue" BorderThickness="1">
+                <cc1:MyControl BorderBrush="Black" BorderThickness="1" />                
+            </Border>
+
+            <cc1:MyControlDP Margin="0,10,0,0" 
+                            Text="{Binding DpName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Border Margin="0,10,0,0" BorderBrush="CadetBlue" BorderThickness="1">
+                <TextBlock Text="{Binding DpName}" />
+            </Border>
         </StackPanel>
     </Grid>
 </Window>
