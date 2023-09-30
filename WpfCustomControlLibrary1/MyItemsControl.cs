@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -13,18 +14,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFCustomControls
+namespace WpfCustomControlLibrary1
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    
+    public class MyItemsControl : Selector
     {
-        public MainWindow()
+        static MyItemsControl()
         {
-            InitializeComponent();
-
-            DataContext = new MyDataObject() { Name = "Madhav Krishna" };
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(MyItemsControl), new FrameworkPropertyMetadata(typeof(MyItemsControl)));
         }
     }
 }

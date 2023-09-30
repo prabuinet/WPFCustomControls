@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -36,21 +35,20 @@ namespace WpfCustomControlLibrary1
     /// to this project and Rebuild to avoid compilation errors:
     ///
     ///     Right click on the target project in the Solution Explorer and
-    ///     "Add Reference"->"Projects"->[Select this project]
+    ///     "Add Reference"->"Projects"->[Browse to and select this project]
     ///
     ///
     /// Step 2)
     /// Go ahead and use your control in the XAML file.
     ///
-    ///     <MyNamespace:CustomControl1/>
+    ///     <MyNamespace:MyContentControl/>
     ///
     /// </summary>
-    public class CustomControl1 : ListBox
+    public class MyContentControl : ContentControl
     {
-        static CustomControl1()
+        static MyContentControl()
         {
-            // this tells the xaml parser where to find style for this control
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CustomControl1), new FrameworkPropertyMetadata(typeof(CustomControl1)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(MyContentControl), new FrameworkPropertyMetadata(typeof(MyContentControl)));
         }
     }
 }

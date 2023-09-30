@@ -15,4 +15,87 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+            
+    <!-- use this kind of style to overwrite control template of button (base class)
+    <Style TargetType="{x:Type local:MyButton}">        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MyButton}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <TextBlock Text="Hello Existing!" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    -->
+    
+    <!-- we can use BasedOn to change only few other properties other than control template -->
+    <Style TargetType="{x:Type local:MyButton}" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Background" Value="ForestGreen" />
+    </Style>
+
+    <Style TargetType="{x:Type local:MyContentControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MyContentControl}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Padding="{TemplateBinding Padding}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:MyItemsControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MyItemsControl}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Padding="{TemplateBinding Padding}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ScrollViewer>
+                            <ItemsPresenter  />
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:MyTextControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MyTextControl}">
+                    <!-- this way of binding dosn't support many normal binding functionalities -->
+                    <!--<TextBox Text="{TemplateBinding Text}" />-->
+
+                    <TextBox Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:MyControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MyControl}">
+                    <!-- this way of binding dosn't support many normal binding functionalities -->
+                    <!--<TextBox Text="{TemplateBinding Text}" />-->
+
+                    <Border>
+                        <TextBlock x:Name="PART_TextBlock" />                        
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
