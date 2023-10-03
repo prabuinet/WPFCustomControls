@@ -113,4 +113,28 @@
         </Setter>
     </Style>
 
+    <Style TargetType="{x:Type local:MyCustomReadOnlyControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MyCustomReadOnlyControl}">
+                    <!-- this way of binding dosn't support many normal binding functionalities -->
+                    <!--<TextBox Text="{TemplateBinding Text}" />-->
+
+                    <Border>
+                        <Button Background="{TemplateBinding Background}" 
+                                x:Name="PART_Button"
+                                Content="Click Me" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasBeenClicked" Value="True">
+                            <Setter Property="Background" Value="Green" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+
 </ResourceDictionary>

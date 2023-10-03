@@ -70,6 +70,23 @@ namespace WpfCustomControlLibrary1
                     new PropertyChangedCallback(OnBorderPropertyChangedCallback), 
                     new CoerceValueCallback(OnBorderPropertyCoerce)));
 
+        public static readonly DependencyProperty BoldProperty =
+            DependencyProperty.Register("Bold", typeof(string), typeof(MyControlDP),
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    new PropertyChangedCallback(OnBoldPropertyChangedCallback),
+                    new CoerceValueCallback(OnBoldPropertyCoerce)));
+
+        private static object OnBoldPropertyCoerce(DependencyObject d, object baseValue)
+        {
+            //throw new NotImplementedException();
+            return baseValue;
+        }
+
+        private static void OnBoldPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            //throw new NotImplementedException();
+        }
+
         private static void OnBorderPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             MyControlDP control = d as MyControlDP;

@@ -72,7 +72,7 @@
 * contents:
 	- Dependency Properties
 	- Property Metadata
-	- Read Only Properties
+	- ReadOnly Properties
 	- Collection Type Properties
 	- Attached Properties
 ### Dependency Properties
@@ -109,7 +109,8 @@
 		```
 	- coercion
 		- allows you to change the incoming value
-		- ***IMPORTANT this change only affects the control's value, but not the actual value in data source***
+		- ***IMPORTANT this change only affects the control's value, 
+		     but not the actual value in data source (which it is databinded to)***
 		```
 			public static readonly DependencyProperty TextProperty =
 				DependencyProperty.Register("Text", typeof(string), typeof(MyControlDP), 
@@ -125,8 +126,32 @@
 ### FrameworkPropertyMetadata
 * Gives lot more control than PropertyMetadata
 	- Change default data binding mode
-	- Flags we can set:
+	```
+        public static readonly DependencyProperty BoldProperty =
+            DependencyProperty.Register("Bold", typeof(string), typeof(MyControlDP),
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+	```
+	- Other Flags we can set:
 		- AffectsMeasure
 		- AffectsArrange
 		- AffectsRender
+		- More...
 	
+### ReadOnly Properties
+* It has limited functionality
+	- not settable
+	- no databinding
+	- no animation
+	- no validation
+	- no inheritance
+* why use them?
+	- used for state determination
+	- used as a property trigger
+
+### Collection Type Properties
+* IEnumerable, Observable collections...
+	- ***IMPORTANT*** DO NOT provide default value in metadata for collection type properties
+	- Provide default value in constructor of custom control or OnApplyTemplate or other area of initialization
+	- Why? You dont want to create a sigleton
+
+
