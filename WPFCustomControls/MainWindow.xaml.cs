@@ -26,5 +26,20 @@ namespace WPFCustomControls
 
             DataContext = new MyDataObject() { Name = "Madhav Krishna" };
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new CollectionWindow().Show();
+        }
+
+        private void AttachedPropertiesButton_Click(object sender, RoutedEventArgs e)
+        {
+            new AttachedPropertyWindow().Show();
+        }
+
+        private void RoutedEventButton_Click(object sender, RoutedEventArgs e)
+        {
+            new RoutedEventDemo().Show();
+        }
     }
 }

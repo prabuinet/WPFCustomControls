@@ -48,8 +48,20 @@
                 <TextBlock Text="{Binding DpName}" />
             </Border>
 
-            <Border Margin="0,10,0,0" BorderBrush="CadetBlue" BorderThickness="1">
+            <Border Margin="0,10,0,0" BorderThickness="1">
                 <cc1:MyCustomReadOnlyControl />
+            </Border>
+
+            <Border Margin="0,10,0,0" BorderThickness="1">
+                <Button Click="Button_Click">Collection Demo</Button>
+            </Border>
+
+            <Border Margin="0,10,0,0" BorderThickness="1">
+                <Button x:Name="AttachedPropertiesButton" Click="AttachedPropertiesButton_Click">Attached Properties</Button>
+            </Border>
+
+            <Border Margin="0,10,0,0" BorderThickness="1">
+                <Button x:Name="RoutedEventButton" Click="RoutedEventButton_Click">Routed Events Demo</Button>
             </Border>
         </StackPanel>
     </Grid>

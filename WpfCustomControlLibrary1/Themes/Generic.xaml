@@ -135,6 +135,43 @@
         </Setter>
     </Style>
 
-    
+
+    <Style TargetType="{x:Type local:MyCollectionControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MyCollectionControl}">
+                    <!-- this way of binding dosn't support many normal binding functionalities -->
+                    <!--<TextBox Text="{TemplateBinding Text}" />-->
+
+                    <Border>
+                        <ListBox ItemsSource="{Binding Items, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:MyControlAttached}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MyControlAttached}">
+                    <!-- this way of binding dosn't support many normal binding functionalities -->
+                    <!--<TextBox Text="{TemplateBinding Text}" />-->
+
+                    <Border>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                        
+                            <TextBlock Text="{Binding ChildCount, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <ContentPresenter Grid.Row="1" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>

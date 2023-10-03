@@ -1,5 +1,8 @@
 # WPFCustomControls
 
+##### Introduction to WPF Custom Controls - by Brian Lagunas, Pluralsight
+
+
 ## Anotomy of a custom control
 * Custom Control inherits from Control class (we can change it)
 * Xaml of the control is placed as a style definition under Themes/Generic.xaml file
@@ -154,4 +157,58 @@
 	- Provide default value in constructor of custom control or OnApplyTemplate or other area of initialization
 	- Why? You dont want to create a sigleton
 
+
+### Attached Property
+* what is attached property
+	- Global property for any object
+	- No Wrapper
+	- Allows us to define attached property on any object other than the defining class
+	- common uses:
+		- Layout (Ex, DockPanel.Dock, Panel.ZIndex, Canvas.Top)
+		- Parent/Child scenario
+		- Integration - to support mvvm stuff
+		- Visual studio designer support
+
+## Events and Commands
+* contents:
+	- Understanding Routed Events
+	- Custom Routed Events
+	- Understanding Routed Commands
+	- Custom Routed Commands
+
+* Understanding Routed Events
+	- What are they?
+		- basically a clr event backed by an instance of a routed event class
+		- registed with the wpf eventing system
+		- an event can invoke multiple listeners in element tree
+	- routing strategies
+		- direct - similar to winform events, but supports wpf event triggers etc, ex. MouseEnter
+		- bubbling - bubbles up 
+		- tunneling - always starts with preview (MouseDownPreview)
+	- Why Routed Events
+		- Any UIElement can be a listener
+		- Common handlers
+		- VisualTree communication
+		- Event Setter and Event Trigger
+* Bubbling
+	- to stop bubbling - e.Handled = True; 
+	- to capture even the handled events, use AddHandler
+	```
+		public RoutedEventDemo()
+		{
+			InitializeComponent();
+			this.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(MyHandler), true);
+		}
+
+		private void MyHandler(object sender, RoutedEventArgs routedEventArgs)
+		{
+			Debug.WriteLine("My handler");
+		}
+	```
+* Created Routed Event
+	- Register your event with wpf event system
+	- Choose routing strategy (direct, bubbling, tunneling)
+	- Provide add/remove clr accessors (wrapper)
+	- Raise the event
+	- Created custom RoutedEventArgs if needed
 
