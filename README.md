@@ -212,3 +212,22 @@
 	- Raise the event
 	- Created custom RoutedEventArgs if needed
 
+* Routed Command
+	- what are they? special kind of ICommand implementation Execute/CanExecute
+	- Execute/CanExecute have no logic 
+	- Instead they raise events that traverse the object tree looking for object with command binding
+	- Why use them? 
+		- decouple from command targets
+		- reduce repititive code
+		- logic can control enabled state of control
+		- associate input gestures (ctrl-x, ctrl-v etc)
+* Creating Custom Routed Command
+	- Define/Instantiate
+	- ExecuteRoutedEventHandler
+	- CanExecuteRoutedEventHandler
+	- CommandBinding
+* ICommandSource - Supports MVVM
+	- Command
+	- CommandParamenter
+	- CommandTarget
+

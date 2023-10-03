@@ -24,6 +24,7 @@ namespace WPFCustomControls
         public RoutedEventDemo()
         {
             InitializeComponent();
+            this.DataContext = new RoutedWindowModel();
             this.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(MyHandler), true);
         }
 
@@ -51,6 +52,37 @@ namespace WPFCustomControls
         {
             Debug.WriteLine("Grid_Click");
             //e.Handled = true; - This will stop bubbling
+        }
+
+        private void Grid_MyClick(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("Grid MyClick");            
+        }
+                
+        private void MyEventControl_MyClick(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("MyEventControl MyClick");
+        }
+
+        private void MyEventControl_MyTripleClick(object sender, WpfCustomControlLibrary1.MyTripleClickEventArgs args)
+        {
+            Debug.WriteLine("MyEventControl MyTripleClick");
+        }
+
+        private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if(!String.IsNullOrWhiteSpace(TextBox1.SelectedText))
+                e.CanExecute = true;
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Clipboard.SetText(TextBox1.SelectedText);
+        }
+
+        private void Paste2Button_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationCommands.Paste.Execute(null, TextBox2);
         }
     }
 }

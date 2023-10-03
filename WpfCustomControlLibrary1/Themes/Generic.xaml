@@ -174,4 +174,49 @@
         </Setter>
     </Style>
 
+    <Style TargetType="{x:Type local:MyEventControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MyEventControl}">
+                    <Border>
+                        <Button x:Name="PART_Button" Content="Click Me" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:MyCommandControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MyCommandControl}">
+
+                    <Border>
+                        <Button x:Name="PART_Button" 
+                                Command="{x:Static local:ControlCommands.MyUpdateCommand}"
+                                CommandParameter="Hello World!" Content="Command Example"  />
+                    </Border>
+                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:MyCommandSourceControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MyCommandSourceControl}">
+
+                    <Border>
+                        <TextBlock x:Name="PART_TextBlock" 
+                                  Text="Click Me!" />
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+
 </ResourceDictionary>

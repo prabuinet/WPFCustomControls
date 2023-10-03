@@ -4,15 +4,69 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFCustomControls"
+        xmlns:cc="clr-namespace:WpfCustomControlLibrary1;assembly=WpfCustomControlLibrary1"
         mc:Ignorable="d"
         Title="RoutedEventDemo" Height="450" Width="800"
         ButtonBase.Click="Window_Click">
-    <Grid ButtonBase.Click="Grid_Click">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Cut"
+                        CanExecute="CommandBinding_CanExecute"
+                        Executed="CommandBinding_Executed"
+                        />
+    </Window.CommandBindings>
+    <Grid 
+        ButtonBase.Click="Grid_Click"
+        cc:MyEventControl.MyClick="Grid_MyClick">
         <StackPanel Margin="20" ButtonBase.Click="StackPanel_Click">
-            <Border BorderBrush="Red" BorderThickness="2">
-                <TextBlock Text="This is a Textblock" />
+            <Border BorderThickness="2">
+                <TextBox x:Name="TextBox1" Text="This is a Textblock" />
             </Border>
-            <Button Margin="0,20,0,0" Click="Button_Click">Click Me</Button>
+            <Border Margin="0,20,0,0" BorderThickness="2">
+                <TextBox x:Name="TextBox2" Text="Hello" />
+            </Border>
+            <Button Margin="0,20,0,0" 
+                    Click="Button_Click">Click Me</Button>
+            <cc:MyEventControl Margin="0,20,0,0" 
+                               MyClick="MyEventControl_MyClick"
+                               MyTripleClick="MyEventControl_MyTripleClick" />
+
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <Button Content="Cut.." Margin="0,0,0,0" 
+                        Command="ApplicationCommands.Cut"></Button>
+                <Button Content="Copy.." Margin="10,0,0,0" 
+                        Command="ApplicationCommands.Copy"
+                        CommandTarget="{Binding ElementName=TextBox1}"></Button>
+                <Button Content="Paste.." Margin="10,0,0,0" 
+                        Command="Paste"
+                        CommandTarget="{Binding ElementName=TextBox2}"></Button>
+
+                <Button x:Name="Paste2Button" Content="Paste 2.." Margin="10,0,0,0"
+                        Click="Paste2Button_Click"></Button>
+
+                <cc:MyCommandControl Margin="10,0,0,0"
+                                     x:Name="Ctrl1"
+                    />
+
+                <Button Margin="10,0,0,0" 
+                        Content="Set Value of Another Control"
+                        Command="{x:Static cc:ControlCommands.MyUpdateCommand}"
+                        CommandParameter="Foo Bar"
+                        CommandTarget="{Binding ElementName=Ctrl1}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="0,20,0,0">
+
+                <Border BorderBrush="Red" BorderThickness="1">
+                    <TextBlock Text="{Binding Name}" />
+                </Border>
+
+                <cc:MyCommandSourceControl 
+                    Command="{Binding SetNameCommand}"
+                    CommandParameter="My Name is Billa!"
+                    />
+
+
+            </StackPanel>
         </StackPanel>        
     </Grid>
 </Window>
